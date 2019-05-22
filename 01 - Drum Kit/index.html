@@ -59,7 +59,12 @@
 
 <script>
   document.onkeypress = (e) => {
-    console.log(e.keyCode);
+    // Add "playing" class to the pressed key
+    var el = document.querySelector("[data-key = '" + e.keyCode + "'");
+    el.classList.add("playing");
+    setTimeout(() => {
+      el.classList.remove("playing");
+    }, 3000)
   }
 </script>
 
