@@ -64,10 +64,12 @@
     el.classList.add("playing");
     setTimeout(() => {
       el.classList.remove("playing");
-    }, 3000)
+    }, 150)
+
+    var audio = document.querySelector("audio[data-key = '" + e.keyCode + "'");
+    audio.play();
   }
 </script>
-
 
 </body>
 </html>
