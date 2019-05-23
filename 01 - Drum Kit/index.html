@@ -58,7 +58,7 @@
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
 <script>
-  document.onkeypress = (e) => {
+  function playSound(e){
     // Add "playing" class to the pressed key
     var el = document.querySelector("[data-key = '" + e.keyCode + "'");
     el.classList.add("playing");
@@ -67,8 +67,11 @@
     }, 150)
 
     var audio = document.querySelector("audio[data-key = '" + e.keyCode + "'");
+    audio.currentTime = 0;
     audio.play();
   }
+
+  window.addEventListener('keypress', playSound)
 </script>
 
 </body>
