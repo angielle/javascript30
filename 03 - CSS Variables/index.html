@@ -5,6 +5,22 @@
     <title>JS and CSS Clock</title>
     <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --base: #ffc600;
+            --spacing: 10px;
+            --blur: 0px;
+        }
+
+        img {
+            padding: var(--spacing);
+            background: var(--base);
+            filter: blur(var(--blur));
+        }
+
+        .h1 {
+            color: var(--base);
+        }
+        
         body {
             background-color: #313628;
             color: white;
@@ -23,13 +39,13 @@
     </style>
 </head>
 <body>
-    <h1>Update CSS Variables with JS</h1>
+    <h2>Update CSS Variables with <span class="h1">JS</span></h2>
     <div class="controls">
         <label for="spacing">Spacing:</label>
         <input type="range" name="spacing" min="10" max="200" value="10" data-sizing="px">
 
         <label for="blur">Blur:</label>
-        <input type="range" name="Blur" min="10" max="200" value="10" data-sizing="px">
+        <input type="range" name="blur" min="0" max="50" value="0" data-sizing="px">
 
         <label for="base">Base color:</label>
         <input type="color" name="base" value="#ffc600">
@@ -38,9 +54,16 @@
     </div>
 
     <img src="https://images.pexels.com/photos/1056251/pexels-photo-1056251.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500">
-
-
 </body>
 <script>
+    const inputs = document.querySelectorAll('.controls input');
+    
+    function handleUpdate() {
+        const suffix = this.dataset.sizing || '';
+        document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
+    }
+
+    inputs.forEach(input => input.addEventListener('change', handleUpdate));
+    inputs.forEach(input => input.addEventListener('mousemove', handleUpdate));
 </script>
 </html>
